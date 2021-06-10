@@ -196,10 +196,6 @@ $('#app').click(function () {
 });
 
 function come() {
-  const prevSrc = image.attr('src');
-  const nextSrc =
-    prevSrc == './images/1.jpeg' ? './images/2.jpeg' : './images/1.jpeg';
-  image.attr('src', nextSrc);
   image.animate(
     { width: '60vw', height: '60vw', opacity: 1 },
     1500,
@@ -218,6 +214,10 @@ function leave() {
     1000,
     'swing',
     function () {
+      let prevSrc = image.attr('src');
+      let nextSrc =
+        prevSrc == './images/1.jpeg' ? './images/2.jpeg' : './images/1.jpeg';
+      image.attr('src', nextSrc);
       timer = null;
     },
   );
