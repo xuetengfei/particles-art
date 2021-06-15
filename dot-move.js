@@ -1,3 +1,8 @@
+var timer = null;
+var sound = null;
+var image = $('#goal');
+var audiolist = document.getElementById('list');
+
 $(document).ready(function () {
   var divs = $('#f div');
   console.log('divs.length', divs.length);
@@ -7,32 +12,25 @@ $(document).ready(function () {
   }
 });
 
-var timer = null;
-var image = $('#goal');
-// var myaudio = document.getElementById('audioID');
-var audiolist = document.getElementById('list');
-
 $('#f').delegate('div', 'click', function (ev) {
   if (timer) return;
-  // console.log('$(this)', $(this));
   // console.log('click');
   come($(this));
 });
 
-var sound = null;
+image.click(function () {
+  leave();
+  if (timer) {
+    clearTimeout(timer);
+  }
+});
 
 function come(dom) {
-  console.log('dom', dom);
   dom[0].animate({ background: '#FFFB00', opacity: 1 }, 1000, 'linear');
-
   let nextSrcIdx = randomIntegerInRange(1, 10);
   let nextSrc = './images/' + nextSrcIdx + '.jpg';
   let nextAudio = './mpeg/' + nextSrcIdx + '.mp3';
-
   image.attr('src', nextSrc);
-  // myaudio.src = nextAudio;
-  // load();
-
   sound = new Howl({
     src: [nextAudio],
   });
@@ -88,20 +86,7 @@ function animateDiv(myclass) {
     },
   );
 }
-// function play() {
-//   console.log('play');
-//   myaudio.volume = 1;
-//   return myaudio.play();
-// }
 
-// function stop() {
-//   return myaudio.pause();
-// }
-
-// function load() {
-//   console.log('load');
-//   return myaudio.load();
-// }
 // 随机整数
 function randomIntegerInRange(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
