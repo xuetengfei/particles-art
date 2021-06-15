@@ -7,6 +7,56 @@ $(document).ready(function () {
   }
 });
 
+var timer = null;
+var image = $('#goal');
+var myaudio = document.getElementById('audioID');
+var audiolist = document.getElementById('list');
+
+$('#f').delegate('div', 'click', function (ev) {
+  if (timer) return;
+  console.log('$(this)', $(this));
+  console.log('click');
+  come($(this));
+});
+
+function come(dom) {
+  console.log('dom', dom);
+  dom[0].animate({ background: '#FFFB00', opacity: 1 }, 1000, 'linear');
+
+  let nextSrcIdx = randomIntegerInRange(1, 10);
+  let nextSrc = './images/' + nextSrcIdx + '.jpg';
+  let nextAudio = './mpeg/' + nextSrcIdx + '.mp3';
+
+  image.attr('src', nextSrc);
+  $('#audioID source').attr('src', nextAudio);
+  // audiolist
+
+  image.animate(
+    { width: '60vw', height: '60vw', opacity: 1 },
+    1500,
+    'swing',
+    function () {
+      load();
+      play();
+      timer = setTimeout(function () {
+        leave();
+      }, 10000);
+    },
+  );
+}
+
+function leave() {
+  stop();
+  image.animate(
+    { width: 0, height: 0, opacity: 0 },
+    1000,
+    'swing',
+    function () {
+      timer = null;
+    },
+  );
+}
+
 function makeNewPosition() {
   var h = $(window).height() - 50;
   var w = $(window).width() - 50;
@@ -34,49 +84,18 @@ function animateDiv(myclass) {
     },
   );
 }
-
-var timer = null;
-var image = $('#goal');
-
-$('#f').delegate('div', 'click', function (ev) {
-  if (timer) return;
-  console.log('$(this)', $(this));
-  console.log('click');
-  come();
-});
-
-// particlesJS
-
-// $('#app').click(function () {
-//   if (timer) return;
-//   console.log('click');
-//   come();
-// });
-
-function come() {
-  image.animate(
-    { width: '60vw', height: '60vw', opacity: 1 },
-    1500,
-    'swing',
-    function () {
-      timer = setTimeout(function () {
-        leave();
-      }, 5000);
-    },
-  );
+function play() {
+  return myaudio.play();
 }
 
-function leave() {
-  image.animate(
-    { width: 0, height: 0, opacity: 0 },
-    1000,
-    'swing',
-    function () {
-      let prevSrc = image.attr('src');
-      let nextSrc =
-        prevSrc == './images/1.jpeg' ? './images/2.jpeg' : './images/1.jpeg';
-      image.attr('src', nextSrc);
-      timer = null;
-    },
-  );
+function stop() {
+  return myaudio.pause();
+}
+
+function load() {
+  return myaudio.load();
+}
+// 随机整数
+function randomIntegerInRange(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }

@@ -71,3 +71,8 @@ canvas {
     opacity: 0.3;
   }
 }
+
+#audioID {
+  opacity: 0;
+  pointer-events: none;
+}
