@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="./index.css" />
   </head>
   <body>
+    <audio controls id="audioID">
+      <source src="" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+    <!-- <audio src="./mpeg/1.mp3" controls preload="auto" type="audio/mpeg"></audio> -->
     <div id="f">
       <div></div>
       <div></div>
@@ -31,12 +36,20 @@
       <div></div>
     </div>
     <img id="goal" src="" alt="img" />
-    <audio controls autoplay id="audioID">
-      <source src="" type="audio/mpeg" />
-      Your browser does not support the audio element.
-    </audio>
     <div id="particlesJsWrapper"></div>
     <div id="particlesJsWrapperBg"></div>
+    <div id="audioList">
+      <audio src="./mpeg/1.mp3" preload="auto" type="audio/mpeg"></audio>
+      <audio src="./mpeg/2.mp3" preload="auto" type="audio/mpeg"></audio>
+      <audio src="./mpeg/3.mp3" preload="auto" type="audio/mpeg"></audio>
+      <audio src="./mpeg/4.mp3" preload="auto" type="audio/mpeg"></audio>
+      <audio src="./mpeg/5.mp3" preload="auto" type="audio/mpeg"></audio>
+      <audio src="./mpeg/6.mp3" preload="auto" type="audio/mpeg"></audio>
+      <audio src="./mpeg/7.mp3" preload="auto" type="audio/mpeg"></audio>
+      <audio src="./mpeg/8.mp3" preload="auto" type="audio/mpeg"></audio>
+      <audio src="./mpeg/9.mp3" preload="auto" type="audio/mpeg"></audio>
+      <audio src="./mpeg/10.mp3" preload="auto" type="audio/mpeg"></audio>
+    </div>
     <script src="./jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="./index.js"></script>

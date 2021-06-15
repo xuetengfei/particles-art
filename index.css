@@ -73,6 +73,14 @@ canvas {
 }
 
 #audioID {
+  /* z-index: 100; */
+  /* position: fixed; */
   opacity: 0;
   pointer-events: none;
+}
+
+#audioList {
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
 }

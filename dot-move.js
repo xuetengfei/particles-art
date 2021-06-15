@@ -29,13 +29,13 @@ function come(dom) {
 
   image.attr('src', nextSrc);
   $('#audioID source').attr('src', nextAudio);
+  load();
 
   image.animate(
     { width: '60vw', height: '60vw', opacity: 1 },
     1500,
     'swing',
     function () {
-      load();
       play();
       timer = setTimeout(function () {
         leave();
@@ -84,6 +84,8 @@ function animateDiv(myclass) {
   );
 }
 function play() {
+  console.log('play');
+  myaudio.volume = 1;
   return myaudio.play();
 }
 
@@ -92,6 +94,7 @@ function stop() {
 }
 
 function load() {
+  console.log('load');
   return myaudio.load();
 }
 // 随机整数
