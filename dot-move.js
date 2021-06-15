@@ -29,7 +29,6 @@ function come(dom) {
 
   image.attr('src', nextSrc);
   $('#audioID source').attr('src', nextAudio);
-  // audiolist
 
   image.animate(
     { width: '60vw', height: '60vw', opacity: 1 },
