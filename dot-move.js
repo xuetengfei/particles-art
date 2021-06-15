@@ -9,15 +9,17 @@ $(document).ready(function () {
 
 var timer = null;
 var image = $('#goal');
-var myaudio = document.getElementById('audioID');
+// var myaudio = document.getElementById('audioID');
 var audiolist = document.getElementById('list');
 
 $('#f').delegate('div', 'click', function (ev) {
   if (timer) return;
-  console.log('$(this)', $(this));
-  console.log('click');
+  // console.log('$(this)', $(this));
+  // console.log('click');
   come($(this));
 });
+
+var sound = null;
 
 function come(dom) {
   console.log('dom', dom);
@@ -28,15 +30,18 @@ function come(dom) {
   let nextAudio = './mpeg/' + nextSrcIdx + '.mp3';
 
   image.attr('src', nextSrc);
-  myaudio.src = nextAudio;
-  load();
+  // myaudio.src = nextAudio;
+  // load();
 
+  sound = new Howl({
+    src: [nextAudio],
+  });
   image.animate(
     { width: '60vw', height: '60vw', opacity: 1 },
     1500,
     'swing',
     function () {
-      play();
+      sound.play();
       timer = setTimeout(function () {
         leave();
       }, 10000);
@@ -45,7 +50,7 @@ function come(dom) {
 }
 
 function leave() {
-  stop();
+  sound.stop();
   image.animate(
     { width: 0, height: 0, opacity: 0 },
     1000,
@@ -83,20 +88,20 @@ function animateDiv(myclass) {
     },
   );
 }
-function play() {
-  console.log('play');
-  myaudio.volume = 1;
-  return myaudio.play();
-}
+// function play() {
+//   console.log('play');
+//   myaudio.volume = 1;
+//   return myaudio.play();
+// }
 
-function stop() {
-  return myaudio.pause();
-}
+// function stop() {
+//   return myaudio.pause();
+// }
 
-function load() {
-  console.log('load');
-  return myaudio.load();
-}
+// function load() {
+//   console.log('load');
+//   return myaudio.load();
+// }
 // 随机整数
 function randomIntegerInRange(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
