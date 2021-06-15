@@ -28,7 +28,7 @@ function come(dom) {
   let nextAudio = './mpeg/' + nextSrcIdx + '.mp3';
 
   image.attr('src', nextSrc);
-  $('#audioID source').attr('src', nextAudio);
+  myaudio.src = nextAudio;
   load();
 
   image.animate(
