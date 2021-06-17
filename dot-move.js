@@ -1,5 +1,6 @@
 var timer = null;
 var sound = null;
+var isCome = false;
 var image = $('#goal');
 var audiolist = document.getElementById('list');
 
@@ -14,41 +15,43 @@ $(document).ready(function () {
 
 $('#f').delegate('div', 'click', function (ev) {
   if (timer) return;
-  // console.log('click');
   come($(this));
 });
 
 image.click(function () {
-  leave();
+  leave(sound);
   if (timer) {
     clearTimeout(timer);
   }
 });
 
 function come(dom) {
+  isCome = true;
   dom[0].animate({ background: '#FFFB00', opacity: 1 }, 1000, 'linear');
   let nextSrcIdx = randomIntegerInRange(1, 10);
   let nextSrc = './images/' + nextSrcIdx + '.jpg';
   let nextAudio = './mpeg/' + nextSrcIdx + '.mp3';
-  image.attr('src', nextSrc);
   sound = new Howl({
     src: [nextAudio],
   });
+
+  image.attr('src', nextSrc);
   image.animate(
     { width: '60vw', height: '60vw', opacity: 1 },
     1500,
     'swing',
     function () {
-      sound.play();
+      isCome && sound.play();
       timer = setTimeout(function () {
-        leave();
+        leave(sound);
       }, 10000);
     },
   );
 }
 
-function leave() {
-  sound.stop();
+function leave(o) {
+  isCome = false;
+  o.stop();
   image.animate(
     { width: 0, height: 0, opacity: 0 },
     1000,
