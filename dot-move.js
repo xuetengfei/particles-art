@@ -8,7 +8,7 @@ $(document).ready(function () {
   console.log('divs.length', divs.length);
   for (let index = 0; index < divs.length; index++) {
     let element = divs[index];
-    animateDiv(element);
+    initAnimateDiv(element);
   }
 });
 
@@ -64,9 +64,27 @@ function makeNewPosition() {
   var w = $(window).width() - 50;
   var nh = Math.floor(Math.random() * h);
   var nw = Math.floor(Math.random() * w);
-  var width = randomIntegerInRange(30, 40);
+  var width = randomIntegerInRange(10, 30);
   // Math.max(Math.floor(Math.random() * 50), 40);
   return [nh, nw, width];
+}
+function initAnimateDiv(myclass) {
+  var newq = makeNewPosition();
+  $(myclass).animate(
+    {
+      top: newq[0],
+      left: newq[1],
+      width: newq[2],
+      height: newq[2],
+    },
+    0,
+    'swing',
+    function () {
+      setTimeout(() => {
+        animateDiv(myclass);
+      }, Math.floor(Math.random() * 5000));
+    },
+  );
 }
 
 function animateDiv(myclass) {
