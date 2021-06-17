@@ -26,7 +26,7 @@ image.click(function () {
 });
 
 function come(dom) {
-  dom[0].animate({ background: '#FFFB00', opacity: 0.8 }, 1000, 'linear');
+  dom[0].animate({ background: '#FFFB00', opacity: 1 }, 1000, 'linear');
   let nextSrcIdx = randomIntegerInRange(1, 10);
   let nextSrc = './images/' + nextSrcIdx + '.jpg';
   let nextAudio = './mpeg/' + nextSrcIdx + '.mp3';
@@ -35,7 +35,7 @@ function come(dom) {
     src: [nextAudio],
   });
   image.animate(
-    { width: '60vw', height: '60vw', opacity: 0.9 },
+    { width: '60vw', height: '60vw', opacity: 1 },
     1500,
     'swing',
     function () {
