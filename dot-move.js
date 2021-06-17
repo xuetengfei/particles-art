@@ -26,7 +26,7 @@ image.click(function () {
 });
 
 function come(dom) {
-  dom[0].animate({ background: '#FFFB00', opacity: 1 }, 1000, 'linear');
+  dom[0].animate({ background: '#FFFB00', opacity: 0.8 }, 1000, 'linear');
   let nextSrcIdx = randomIntegerInRange(1, 10);
   let nextSrc = './images/' + nextSrcIdx + '.jpg';
   let nextAudio = './mpeg/' + nextSrcIdx + '.mp3';
@@ -35,7 +35,7 @@ function come(dom) {
     src: [nextAudio],
   });
   image.animate(
-    { width: '60vw', height: '60vw', opacity: 1 },
+    { width: '60vw', height: '60vw', opacity: 0.9 },
     1500,
     'swing',
     function () {
@@ -64,9 +64,10 @@ function makeNewPosition() {
   var w = $(window).width() - 50;
   var nh = Math.floor(Math.random() * h);
   var nw = Math.floor(Math.random() * w);
-  var width = randomIntegerInRange(10, 30);
+  var width = randomIntegerInRange(10, 20);
+  var opacity = randomIntegerInRange(0.8, 0.9);
   // Math.max(Math.floor(Math.random() * 50), 40);
-  return [nh, nw, width];
+  return [nh, nw, width, opacity];
 }
 function initAnimateDiv(myclass) {
   var newq = makeNewPosition();
@@ -76,6 +77,7 @@ function initAnimateDiv(myclass) {
       left: newq[1],
       width: newq[2],
       height: newq[2],
+      opacity: newq[3],
     },
     0,
     'swing',
