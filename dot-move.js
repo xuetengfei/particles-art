@@ -64,7 +64,8 @@ function makeNewPosition() {
   var w = $(window).width() - 50;
   var nh = Math.floor(Math.random() * h);
   var nw = Math.floor(Math.random() * w);
-  var width = Math.floor(Math.random() * 40);
+  var width = randomIntegerInRange(30, 40);
+  // Math.max(Math.floor(Math.random() * 50), 40);
   return [nh, nw, width];
 }
 
