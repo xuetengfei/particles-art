@@ -6,7 +6,7 @@ var audiolist = document.getElementById('list');
 
 $(document).ready(function () {
   var divs = $('#f div');
-  console.log('divs.length', divs.length);
+  // console.log('divs.length', divs.length);
   for (let index = 0; index < divs.length; index++) {
     let element = divs[index];
     initAnimateDiv(element);
@@ -17,7 +17,7 @@ $('#f').delegate('div', 'click', function (ev) {
   if (timer) return;
   const opacity = $(this).css('opacity');
   console.log('w', opacity);
-  // if (!opacity) return;
+  if (!opacity) return;
   come($(this));
 });
 
@@ -37,22 +37,24 @@ function come(dom) {
   sound = new Howl({
     src: [nextAudio],
   });
-
   image.attr('src', nextSrc);
+  timer = setTimeout(function () {
+    console.log('leaveed cb!');
+    leave(sound);
+  }, 10000);
   image.animate(
     { width: '60vw', height: '60vw', opacity: 1 },
     1500,
     'swing',
     function () {
       isCome && sound.play();
-      timer = setTimeout(function () {
-        leave(sound);
-      }, 10000);
+      console.log('isShowed! 1');
     },
   );
 }
 
 function leave(o) {
+  console.log('leaveed! self');
   isCome = false;
   o.stop();
   image.animate(
@@ -72,7 +74,6 @@ function makeNewPosition() {
   var nw = Math.floor(Math.random() * w);
   var width = randomIntegerInRange(10, 20);
   var opacity = randomIntegerInRange(0.8, 0.9);
-  // Math.max(Math.floor(Math.random() * 50), 40);
   var opacity = width <= 15 ? 0 : 0.7;
   return [nh, nw, width, opacity];
 }
