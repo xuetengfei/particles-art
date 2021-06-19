@@ -79,6 +79,8 @@ function makeNewPosition() {
 }
 function initAnimateDiv(dom) {
   var newq = makeNewPosition();
+  var t = Math.floor(Math.random() * 5000);
+  console.log('t', t);
   $(dom).animate(
     {
       top: newq[0],
@@ -93,7 +95,7 @@ function initAnimateDiv(dom) {
       setTimeout(() => {
         animateDiv(dom);
         console.log('2');
-      }, 300);
+      }, t);
     },
   );
 }
@@ -107,7 +109,6 @@ function animateDiv(dom) {
       width: newq[2],
       height: newq[2],
       opacity: newq[3],
-      animation: null,
     },
     16000,
     'swing',
