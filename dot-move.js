@@ -15,6 +15,9 @@ $(document).ready(function () {
 
 $('#f').delegate('div', 'click', function (ev) {
   if (timer) return;
+  const opacity = $(this).css('opacity');
+  console.log('w', opacity);
+  // if (!opacity) return;
   come($(this));
 });
 
@@ -28,7 +31,7 @@ image.click(function () {
 function come(dom) {
   isCome = true;
   dom[0].animate({ background: '#FFFB00', opacity: 1 }, 1000, 'linear');
-  let nextSrcIdx = randomIntegerInRange(1, 10);
+  let nextSrcIdx = randomIntegerInRange(1, 25);
   let nextSrc = './images/' + nextSrcIdx + '.jpg';
   let nextAudio = './mpeg/' + nextSrcIdx + '.mp3';
   sound = new Howl({
@@ -70,6 +73,7 @@ function makeNewPosition() {
   var width = randomIntegerInRange(10, 20);
   var opacity = randomIntegerInRange(0.8, 0.9);
   // Math.max(Math.floor(Math.random() * 50), 40);
+  var opacity = width <= 15 ? 0 : 0.7;
   return [nh, nw, width, opacity];
 }
 function initAnimateDiv(myclass) {
@@ -100,8 +104,9 @@ function animateDiv(myclass) {
       left: newq[1],
       width: newq[2],
       height: newq[2],
+      opacity: newq[3],
     },
-    10000,
+    16000,
     'swing',
     function () {
       setTimeout(() => {
