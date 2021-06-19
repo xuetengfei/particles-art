@@ -6,9 +6,9 @@ var audiolist = document.getElementById('list');
 
 $(document).ready(function () {
   var divs = $('#f div');
-  // console.log('divs.length', divs.length);
   for (let index = 0; index < divs.length; index++) {
     let element = divs[index];
+    // $(element).addClass('animate');
     initAnimateDiv(element);
   }
 });
@@ -77,41 +77,43 @@ function makeNewPosition() {
   var opacity = width <= 15 ? 0 : 0.7;
   return [nh, nw, width, opacity];
 }
-function initAnimateDiv(myclass) {
+function initAnimateDiv(dom) {
   var newq = makeNewPosition();
-  $(myclass).animate(
+  $(dom).animate(
     {
       top: newq[0],
       left: newq[1],
       width: newq[2],
       height: newq[2],
-      opacity: newq[3],
+      opacity: 0,
     },
     0,
     'swing',
     function () {
       setTimeout(() => {
-        animateDiv(myclass);
-      }, Math.floor(Math.random() * 5000));
+        animateDiv(dom);
+        console.log('2');
+      }, 300);
     },
   );
 }
 
-function animateDiv(myclass) {
+function animateDiv(dom) {
   var newq = makeNewPosition();
-  $(myclass).animate(
+  $(dom).animate(
     {
       top: newq[0],
       left: newq[1],
       width: newq[2],
       height: newq[2],
       opacity: newq[3],
+      animation: null,
     },
     16000,
     'swing',
     function () {
       setTimeout(() => {
-        animateDiv(myclass);
+        animateDiv(dom);
       }, Math.floor(Math.random() * 5000));
     },
   );

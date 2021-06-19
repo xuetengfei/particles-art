@@ -58,7 +58,7 @@ canvas {
   border-radius: 50%;
   background-color: rgb(255, 255, 255);
   position: fixed;
-  /* animation: show 6s linear infinite; */
+  /* animation: show 5s ease-in-out infinite; */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -66,13 +66,22 @@ canvas {
 
 @keyframes show {
   0% {
-    opacity: 0.3;
+    opacity: 0.1;
   }
-  50% {
+  20% {
     opacity: 0.8;
   }
+  40% {
+    opacity: 0.1;
+  }
+  60% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.1;
+  }
   100% {
-    opacity: 0.3;
+    opacity: 0.8;
   }
 }
 
